@@ -21,6 +21,7 @@ function Settings(options) {
     // allow null options
     options = options || {};
     this.displayMode = get(options.displayMode, false);
+    this.document = get(options.document, window.document);
 }
 
 module.exports = Settings;
