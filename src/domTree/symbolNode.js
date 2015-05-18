@@ -1,4 +1,16 @@
+var buildCommon = require('../buildCommon');
+
+var createClass = buildCommon.createClass;
+
 module.exports = function(document) {
+  /**
+   * SimpleDOM doesn't provide style attribute on elements, so we'll add it
+   */
+  function createElement(tagName) {
+    var element = document.createElement(tagName);
+    element.style = {};
+    return element;
+  }
   /**
    * A symbol node contains information about a single symbol. It either renders
    * to a single text node, or a span with a single text node in it, depending on
@@ -24,18 +36,18 @@ module.exports = function(document) {
       var span = null;
 
       if (this.italic > 0) {
-          span = document.createElement("span");
+          span = createElement("span");
           span.style.marginRight = this.italic + "em";
       }
 
       if (this.classes.length > 0) {
-          span = span || document.createElement("span");
+          span = span || createElement("span");
           span.className = createClass(this.classes);
       }
 
       for (var style in this.style) {
           if (this.style.hasOwnProperty(style)) {
-              span = span || document.createElement("span");
+              span = span || createElement("span");
               span.style[style] = this.style[style];
           }
       }

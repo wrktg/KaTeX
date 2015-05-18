@@ -1,3 +1,7 @@
+var buildCommon = require('../buildCommon');
+
+var createClass = buildCommon.createClass;
+
 module.exports = function(document) {
   /**
    * This node represents a span node, with a className, a list of children, and
@@ -28,6 +32,7 @@ module.exports = function(document) {
    */
   span.prototype.toNode = function() {
       var span = document.createElement("span");
+      span.style = {};
 
       // Apply the class
       span.className = createClass(this.classes);
