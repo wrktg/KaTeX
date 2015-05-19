@@ -1,4 +1,5 @@
 var buildCommon = require('../buildCommon');
+var utils = require('../utils');
 
 var createClass = buildCommon.createClass;
 
@@ -52,12 +53,15 @@ module.exports = function(document) {
           }
       }
 
+      var result;
       if (span) {
           span.appendChild(node);
-          return span;
+          result = span;
       } else {
-          return node;
+          result = node;
       }
+      result.parseNode = this.parseNode;
+      return result;
   };
 
   /**

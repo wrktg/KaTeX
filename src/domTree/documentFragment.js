@@ -18,6 +18,7 @@ module.exports = function(document) {
   documentFragment.prototype.toNode = function() {
       // Create a fragment
       var frag = document.createDocumentFragment();
+      frag.parseNode = this.parseNode;
 
       // Append the children
       for (var i = 0; i < this.children.length; i++) {

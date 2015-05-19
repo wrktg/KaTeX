@@ -1,4 +1,5 @@
 var buildCommon = require('../buildCommon');
+var utils = require('../utils');
 
 var createClass = buildCommon.createClass;
 
@@ -32,6 +33,7 @@ module.exports = function(document) {
    */
   span.prototype.toNode = function() {
       var span = document.createElement("span");
+      span.parseNode = this.parseNode;
       span.style = {};
 
       // Apply the class
