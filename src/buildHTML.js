@@ -13,10 +13,6 @@ var Style = require("./Style");
  * nodes.
  */
 module.exports = function(tree, settings) {
-    // buildExpression is destructive, so we need to make a clone
-    // of the incoming tree so that it isn't accidentally changed
-    tree = JSON.parse(JSON.stringify(tree));
-
     var startStyle = Style.TEXT;
     if (settings.displayMode) {
         startStyle = Style.DISPLAY;
