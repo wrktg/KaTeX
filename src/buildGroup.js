@@ -1136,5 +1136,23 @@ module.exports = function(domTree) {
       }
   };
 
+  /**
+   * Wrap each groupType callback in a function that injects parseNode into created
+   * element
+   */
+  for (var groupType in groupTypes) {
+    if (Object.prototype.hasOwnProperty.call(groupTypes, groupType)) {
+      groupTypes[groupType] = injectParseNode(groupTypes[groupType]);
+    }
+  }
+
   return buildGroup;
+}
+
+function injectParseNode(callback) {
+  return function(parseNode) {
+    var element = callback.apply(null, arguments);
+    element.parseNode = parseNode;
+    return element;
+  }
 }
